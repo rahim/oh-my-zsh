@@ -40,7 +40,7 @@ function my_current_branch() {
   echo $(current_branch || echo "(no branch)")
 }
 
-PROMPT=$'%{$fg_bold[green]%}%m%{$reset_color%}$(my_git_prompt) %{$fg_bold[red]%}ᐅ%{$reset_color%} '
+PROMPT=$'%{$fg_bold[green]%}%m:%{$fg_bold[blue]%}${PWD/#$HOME/~} %{$reset_color%}$(my_git_prompt) %{$fg_bold[red]%}ᐅ%{$reset_color%} '
 
 ZSH_THEME_PROMPT_RETURNCODE_PREFIX="%{$fg_bold[red]%}"
 ZSH_THEME_GIT_PROMPT_PREFIX="$fg_bold[white][%{$fg_bold[yellow]%}"
