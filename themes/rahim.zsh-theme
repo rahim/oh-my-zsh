@@ -44,14 +44,14 @@ function my_return_code_color() {
   echo "%(?.$ZSH_THEME_PROMPT_RETURNCODE_SUCCESS_PREFIX.$ZSH_THEME_PROMPT_RETURNCODE_ERROR_PREFIX)"
 }
 
-PROMPT=$'%{$fg_bold[blue]%}${PWD/#$HOME/~} %{$reset_color%}$(my_git_prompt) $(my_return_code_color)ᐅ%{$reset_color%} '
+PROMPT=$'%{$fg_bold[blue]%}${PWD/#$HOME/~} %{$reset_color%}$(my_git_prompt) %{$(my_return_code_color)%}ᐅ%{$reset_color%} '
 
 ZSH_THEME_PROMPT_RETURNCODE_ERROR_PREFIX="%{$fg_bold[red]%}"
 ZSH_THEME_PROMPT_RETURNCODE_SUCCESS_PREFIX="%{$fg_bold[green]%}"
-ZSH_THEME_GIT_PROMPT_PREFIX="$fg_bold[white][%{$fg_bold[cyan]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[white]%}[%{$fg_bold[cyan]%}"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[magenta]%}↑"
 ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[green]%}●"
 ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg_bold[red]%}●"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[white]%}●"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg_bold[red]%}✕"
-ZSH_THEME_GIT_PROMPT_SUFFIX="$fg_bold[white]]%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg_bold[white]%}]%{$reset_color%}"
