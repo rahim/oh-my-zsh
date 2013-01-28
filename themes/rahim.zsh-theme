@@ -44,7 +44,11 @@ function my_return_code_color() {
   echo "%(?.$ZSH_THEME_PROMPT_RETURNCODE_SUCCESS_PREFIX.$ZSH_THEME_PROMPT_RETURNCODE_ERROR_PREFIX)"
 }
 
-PROMPT=$'%{$fg_bold[blue]%}${PWD/#$HOME/~} %{$reset_color%}$(my_git_prompt) %{$(my_return_code_color)%}ᐅ%{$reset_color%} '
+function prompt_hostname() {
+  [ -n "$HOST" ] && echo "$HOST:";
+}
+
+PROMPT=$'%{$fg_bold[blue]%}$(prompt_hostname)${PWD/#$HOME/~} %{$reset_color%}$(my_git_prompt) %{$(my_return_code_color)%}ᐅ%{$reset_color%} '
 
 ZSH_THEME_PROMPT_RETURNCODE_ERROR_PREFIX="%{$fg_bold[red]%}"
 ZSH_THEME_PROMPT_RETURNCODE_SUCCESS_PREFIX="%{$fg_bold[green]%}"
