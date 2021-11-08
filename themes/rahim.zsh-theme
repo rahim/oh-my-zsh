@@ -48,7 +48,15 @@ function prompt_hostname() {
   [ -n "$HOST" ] && echo "$HOST:";
 }
 
-PROMPT=$'%{$fg_bold[blue]%}$(prompt_hostname)${PWD/#$HOME/~} %{$reset_color%}$(my_git_prompt) %{$(my_return_code_color)%}ᐅ%{$reset_color%} '
+function prompt_symbol() {
+  if [ $(arch) = "arm64" ]; then
+    echo "⟁"
+  else
+    echo "ᐅ"
+  fi
+}
+
+PROMPT=$'%{$fg_bold[blue]%}$(prompt_hostname)${PWD/#$HOME/~} %{$reset_color%}$(my_git_prompt) %{$(my_return_code_color)%}$(prompt_symbol)%{$reset_color%} '
 
 ZSH_THEME_PROMPT_RETURNCODE_ERROR_PREFIX="%{$fg_bold[red]%}"
 ZSH_THEME_PROMPT_RETURNCODE_SUCCESS_PREFIX="%{$fg_bold[green]%}"
