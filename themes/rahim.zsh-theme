@@ -58,7 +58,7 @@ function prompt_hostname() {
 }
 
 function prompt_symbol() {
-  if [ $(arch) = "arm64" ]; then
+  if [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "x86_64" ]; then
     echo "⟁"
   else
     echo "ᐅ"
