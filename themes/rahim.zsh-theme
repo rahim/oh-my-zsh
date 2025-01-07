@@ -54,7 +54,18 @@ function my_aws_prompt() {
 }
 
 function prompt_hostname() {
-  [ -n "$HOST" ] && echo "$HOST:";
+  if [[ "$PWD" =~ ^$HOME/projects/(.*)$ ]]; then
+    [ -n "$HOST" ] && echo "$HOST:";
+  fi
+}
+
+function prompt_path() {
+  local path=${PWD/#$HOME/\~}
+  if [[ $path =~ ^~/projects/(.*) ]]; then
+    echo ${match[1]}
+  else
+    echo $(prompt_hostname)$path
+  fi
 }
 
 function prompt_symbol() {
@@ -65,7 +76,7 @@ function prompt_symbol() {
   fi
 }
 
-PROMPT=$'%{$fg_bold[blue]%}$(prompt_hostname)${PWD/#$HOME/~} %{$reset_color%}$(my_aws_prompt)$(my_git_prompt) %{$(my_return_code_color)%}$(prompt_symbol)%{$reset_color%} '
+PROMPT=$'%{$fg_bold[blue]%}$(prompt_path) %{$reset_color%}$(my_aws_prompt)$(my_git_prompt) %{$(my_return_code_color)%}$(prompt_symbol)%{$reset_color%} '
 
 ZSH_THEME_PROMPT_RETURNCODE_ERROR_PREFIX="%{$fg_bold[red]%}"
 ZSH_THEME_PROMPT_RETURNCODE_SUCCESS_PREFIX="%{$fg_bold[green]%}"
